@@ -1,0 +1,8 @@
+@import './style/variables.wxss';
+
+page {
+  background-color: var(--bg-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  color: var(--text-primary);
+  box-sizing: border-box;
+}

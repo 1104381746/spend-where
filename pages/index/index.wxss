@@ -1,0 +1,141 @@
+.page {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #F5F5F5;
+}
+
+.card-wrapper {
+  flex-shrink: 0;
+}
+
+.list-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+.scroll-view {
+  height: 100%;
+}
+
+.date-header {
+  padding: 16rpx 28rpx 8rpx;
+  font-size: 22rpx;
+  color: #999999;
+  background: #F5F5F5;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #666666;
+  margin-bottom: 8rpx;
+}
+
+.empty-hint {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.load-more, .no-more {
+  text-align: center;
+  padding: 24rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* FAB 按钮 */
+.fab {
+  position: fixed;
+  right: 32rpx;
+  bottom: 140rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background: #07C160;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(7, 193, 96, 0.4);
+  z-index: 100;
+}
+
+.fab:active {
+  opacity: 0.8;
+}
+
+.fab-icon {
+  font-size: 52rpx;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+/* 删除确认弹窗 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 560rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+  padding: 40rpx 32rpx 16rpx;
+}
+
+.modal-body {
+  text-align: center;
+  font-size: 28rpx;
+  color: #666666;
+  padding: 0 32rpx 32rpx;
+}
+
+.modal-actions {
+  display: flex;
+  border-top: 1rpx solid #F0F0F0;
+}
+
+.modal-btn {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx;
+  font-size: 30rpx;
+}
+
+.modal-btn.cancel {
+  color: #666666;
+  border-right: 1rpx solid #F0F0F0;
+}
+
+.modal-btn.confirm {
+  color: #EE0A24;
+  font-weight: 600;
+}

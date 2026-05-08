@@ -1,0 +1,63 @@
+<view class="page">
+  <!-- 月/年 切换 -->
+  <view class="view-switcher">
+    <view
+      class="view-btn {{mode === 'month' ? 'active' : ''}}"
+      data-mode="month"
+      bindtap="switchMode"
+    >月</view>
+    <view
+      class="view-btn {{mode === 'year' ? 'active' : ''}}"
+      data-mode="year"
+      bindtap="switchMode"
+    >年</view>
+  </view>
+
+  <!-- 日期导航 -->
+  <view class="date-nav">
+    <view class="nav-btn" bindtap="changeMonth" data-direction="prev" wx:if="{{mode === 'month'}}">‹</view>
+    <view class="nav-btn" bindtap="changeYear" data-direction="prev" wx:else>‹</view>
+    <view class="nav-label" wx:if="{{mode === 'month'}}">{{monthLabel}}</view>
+    <view class="nav-label" wx:else>{{yearLabel}}</view>
+    <view class="nav-btn" bindtap="changeMonth" data-direction="next" wx:if="{{mode === 'month'}}">›</view>
+    <view class="nav-btn" bindtap="changeYear" data-direction="next" wx:else>›</view>
+  </view>
+
+  <!-- 汇总卡片 -->
+  <view class="summary-cards">
+    <view class="summary-item income">
+      <view class="summary-label">收入</view>
+      <view class="summary-value">¥{{totalIncomeStr}}</view>
+    </view>
+    <view class="summary-item expense">
+      <view class="summary-label">支出</view>
+      <view class="summary-value">¥{{totalExpenseStr}}</view>
+    </view>
+    <view class="summary-item balance">
+      <view class="summary-label">结余</view>
+      <view class="summary-value">¥{{balanceStr}}</view>
+    </view>
+  </view>
+
+  <!-- 柱状图 -->
+  <view class="chart-section" hidden="{{loading || (totalIncome === 0 && totalExpense === 0)}}">
+    <view class="chart-title">收支趋势</view>
+    <ec-canvas id="barChart" class="chart-canvas" canvas-id="barChart" ec="{{barEc}}"></ec-canvas>
+  </view>
+
+  <!-- 饼图 -->
+  <view class="chart-section" hidden="{{loading || (totalIncome === 0 && totalExpense === 0)}}">
+    <view class="chart-title">支出分类占比</view>
+    <ec-canvas id="pieChart" class="chart-canvas" canvas-id="pieChart" ec="{{pieEc}}"></ec-canvas>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && totalIncome === 0 && totalExpense === 0}}">
+    <text class="empty-text">当月暂无记录</text>
+  </view>
+</view>

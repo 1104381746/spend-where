@@ -1,0 +1,17 @@
+<view class="record-item" bindtap="onTap" bindlongpress="onLongPress">
+  <view class="record-left">
+    <view class="icon-wrapper" style="background-color: {{iconBgColor}};">
+      <text class="icon">{{categoryIcon}}</text>
+    </view>
+    <view class="record-info">
+      <text class="category-name">{{category}}</text>
+      <text class="record-note" wx:if="{{note}}">{{note}}</text>
+    </view>
+  </view>
+  <view class="record-right">
+    <text class="record-amount {{type === 'expense' ? 'expense' : 'income'}}">
+      {{type === 'expense' ? '-' : '+'}}¥{{formattedAmount}}
+    </text>
+    <text class="record-time">{{time}}</text>
+  </view>
+</view>

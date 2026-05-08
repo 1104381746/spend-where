@@ -1,0 +1,34 @@
+page {
+/* 颜色变量 */
+--primary-color: #07C160;
+--income-color: #07C160;
+--expense-color: #EE0A24;
+--bg-color: #F5F5F5;
+--card-bg: #FFFFFF;
+--text-primary: #333333;
+--text-secondary: #666666;
+--text-hint: #999999;
+--border-color: #EEEEEE;
+
+/* 字体大小 */
+--font-size-xxl: 36rpx;
+--font-size-xl: 32rpx;
+--font-size-lg: 30rpx;
+--font-size-base: 28rpx;
+--font-size-sm: 24rpx;
+--font-size-xs: 20rpx;
+
+/* 间距 */
+--spacing-lg: 32rpx;
+--spacing-base: 24rpx;
+--spacing-sm: 16rpx;
+--spacing-xs: 8rpx;
+
+/* 圆角 */
+--radius-lg: 16rpx;
+--radius-base: 12rpx;
+--radius-sm: 8rpx;
+
+/* 阴影 */
+--shadow-card: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}

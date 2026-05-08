@@ -1,0 +1,68 @@
+<view class="page">
+  <!-- 月度汇总卡片 -->
+  <view class="card-wrapper" bindtap="goToStats">
+    <summary-card
+      totalIncome="{{totalIncome}}"
+      totalExpense="{{totalExpense}}"
+      balance="{{balance}}"
+      monthLabel="{{currentMonth}}"
+    />
+  </view>
+
+  <!-- 记录列表 -->
+  <view class="list-container">
+    <scroll-view
+      scroll-y
+      class="scroll-view"
+      refresher-enabled
+      refresher-triggered="{{refreshing}}"
+      bindrefresherrefresh="onRefresh"
+      bindscrolltolower="onLoadMore"
+      lower-threshold="100"
+    >
+      <!-- 有记录时 -->
+      <block wx:for="{{groupedRecords}}" wx:key="date">
+        <view class="date-header">{{item.dateLabel}}</view>
+        <block wx:for="{{item.items}}" wx:key="_id">
+          <record-item
+            record="{{item}}"
+            bind:taprecord="onTapRecord"
+            bind:deleterecord="onDeleteRecord"
+          />
+        </block>
+      </block>
+
+      <!-- 空状态 -->
+      <view class="empty-state" wx:if="{{groupedRecords.length === 0 && !loading}}">
+        <view class="empty-icon">📝</view>
+        <view class="empty-text">还没有记账记录</view>
+        <view class="empty-hint">点击右下角 + 开始记账</view>
+      </view>
+
+      <!-- 加载状态 -->
+      <view class="load-more" wx:if="{{loading}}">
+        <text wx:if="{{page === 0}}">加载中...</text>
+        <text wx:else>加载更多...</text>
+      </view>
+
+      <view class="no-more" wx:if="{{!hasMore && records.length > 0}}">— 没有更多了 —</view>
+    </scroll-view>
+  </view>
+
+  <!-- 添加按钮 FAB -->
+  <view class="fab" bindtap="goToAdd">
+    <text class="fab-icon">+</text>
+  </view>
+
+  <!-- 删除确认弹窗 -->
+  <view class="modal-overlay" wx:if="{{showDeleteModal}}" bindtap="cancelDelete">
+    <view class="modal-content" catchtap>
+      <view class="modal-title">确认删除</view>
+      <view class="modal-body">确定要删除这笔记录吗？删除后不可恢复。</view>
+      <view class="modal-actions">
+        <view class="modal-btn cancel" bindtap="cancelDelete">取消</view>
+        <view class="modal-btn confirm" bindtap="confirmDelete">删除</view>
+      </view>
+    </view>
+  </view>
+</view>

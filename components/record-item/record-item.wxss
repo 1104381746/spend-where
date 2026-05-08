@@ -1,0 +1,79 @@
+.record-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 28rpx;
+  background: #FFFFFF;
+  border-bottom: 1rpx solid #F0F0F0;
+  transition: background 0.2s;
+}
+
+.record-item:active {
+  background: #F9F9F9;
+}
+
+.record-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.icon-wrapper {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.record-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.category-name {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 500;
+}
+
+.record-note {
+  font-size: 22rpx;
+  color: #999999;
+  margin-top: 4rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.record-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+.record-amount {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.record-amount.expense {
+  color: #EE0A24;
+}
+
+.record-amount.income {
+  color: #07C160;
+}
+
+.record-time {
+  font-size: 22rpx;
+  color: #999999;
+  margin-top: 4rpx;
+}

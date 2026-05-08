@@ -1,0 +1,15 @@
+<view class="category-grid">
+  <view
+    wx:for="{{categories}}"
+    wx:key="name"
+    class="category-item {{selected === item.name ? 'selected' : ''}}"
+    bindtap="onSelect"
+    data-name="{{item.name}}"
+    data-icon="{{item.icon}}"
+  >
+    <view class="category-icon" style="background-color: {{item.color}}20; color: {{item.color}}; border-color: {{selected === item.name ? item.color : 'transparent'}}">
+      <text>{{item.icon}}</text>
+    </view>
+    <text class="category-name">{{item.name}}</text>
+  </view>
+</view>
