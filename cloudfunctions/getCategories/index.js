@@ -15,11 +15,11 @@ const DEFAULT_EXPENSE = [
 ];
 
 const DEFAULT_INCOME = [
-  { name: '工资', icon: '💰', color: '#07C160' },
+  { name: '工资', icon: '💰', color: '#60db8e' },
   { name: '奖金', icon: '🎉', color: '#FF6B6B' },
   { name: '投资理财', icon: '📈', color: '#A66CFF' },
   { name: '兼职', icon: '💼', color: '#FFB347' },
-  { name: '红包', icon: '🧧', color: '#FF4757' },
+  { name: '红包', icon: '🧧', color: '#FF7E7E' },
   { name: '其他', icon: '📦', color: '#90A4AE' }
 ];
 

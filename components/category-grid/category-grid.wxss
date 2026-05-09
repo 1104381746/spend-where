@@ -10,12 +10,11 @@
   flex-direction: column;
   align-items: center;
   padding: 12rpx 0;
-  border-radius: 12rpx;
-  transition: all 0.2s;
+  border-radius: var(--radius-base);
 }
 
 .category-item.selected {
-  background: rgba(7, 193, 96, 0.06);
+  background: rgba(74, 222, 128, 0.1);
 }
 
 .category-icon {
@@ -32,5 +31,13 @@
 
 .category-name {
   font-size: 24rpx;
-  color: #333333;
+  color: var(--text-primary);
+}
+
+.expand-btn {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 16rpx 0 0;
+  font-size: 24rpx;
+  color: var(--text-hint);
 }

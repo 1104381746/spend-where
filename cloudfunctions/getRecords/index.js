@@ -20,6 +20,11 @@ exports.main = async (event, context) => {
     const start = new Date(year, month - 1, 1);
     const end = new Date(year, month, 0, 23, 59, 59, 999);
     query.date = _.gte(start).lte(end);
+  } else if (event.year) {
+    const y = parseInt(event.year);
+    const start = new Date(y, 0, 1);
+    const end = new Date(y, 11, 31, 23, 59, 59, 999);
+    query.date = _.gte(start).lte(end);
   }
 
   if (event.category) {

@@ -21,12 +21,12 @@
       class="type-btn {{type === 'expense' ? 'active-expense' : ''}}"
       data-type="expense"
       bindtap="switchType"
-    >支出</view>
+    >花了</view>
     <view
       class="type-btn {{type === 'income' ? 'active-income' : ''}}"
       data-type="income"
       bindtap="switchType"
-    >收入</view>
+    >赚了</view>
   </view>
 
   <!-- 分类选择 -->

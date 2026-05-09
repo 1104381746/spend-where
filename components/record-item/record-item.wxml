@@ -10,7 +10,7 @@
     </view>
     <view class="row-bottom">
       <text class="record-note">{{note}}</text>
-      <text class="record-time">{{time}}</text>
+      <text class="record-time">{{date}} {{time}}</text>
     </view>
   </view>
 </view>

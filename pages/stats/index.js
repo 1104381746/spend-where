@@ -15,20 +15,11 @@ function initBarChart(canvas, width, height, dpr, dailyData, onBarClick) {
 
   chart.setOption({
     animationDuration: 800,
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: { type: 'shadow' },
-      formatter: function (params) {
-        return params.map(p => {
-          const color = p.seriesName === '收入' ? '#07C160' : '#EE0A24';
-          return '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + color + ';margin-right:6px;"></span>' + p.seriesName + ': ¥' + Number(p.value).toFixed(2);
-        }).join('<br/>');
-      }
-    },
+    tooltip: { show: false },
     legend: {
       data: ['收入', '支出'],
       bottom: 0,
-      textStyle: { fontSize: 12, color: '#666' },
+      textStyle: { fontSize: 12, color: '#9898C0' },
       itemWidth: 12,
       itemHeight: 8,
       itemGap: 24
@@ -37,14 +28,14 @@ function initBarChart(canvas, width, height, dpr, dailyData, onBarClick) {
     xAxis: {
       type: 'category',
       data: dates,
-      axisLabel: { fontSize: 10, color: '#999' },
-      axisLine: { lineStyle: { color: '#eee' } },
+      axisLabel: { fontSize: 10, color: '#6868A0' },
+      axisLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } },
       axisTick: { show: false }
     },
     yAxis: {
       type: 'value',
       axisLabel: { fontSize: 10, color: '#999' },
-      splitLine: { lineStyle: { color: '#f5f5f5', type: 'dashed' } },
+      splitLine: { lineStyle: { color: 'rgba(255,255,255,0.04)', type: 'dashed' } },
       axisLine: { show: false },
       axisTick: { show: false }
     },
@@ -55,11 +46,11 @@ function initBarChart(canvas, width, height, dpr, dailyData, onBarClick) {
         itemStyle: {
           borderRadius: [6, 6, 0, 0],
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: '#3EDB7A' }, { offset: 1, color: '#07C160' }
+            { offset: 0, color: '#86EFAC' }, { offset: 1, color: '#60db8e' }
           ])
         },
         label: {
-          show: true, position: 'top', fontSize: 9, color: '#07C160',
+          show: true, position: 'top', fontSize: 9, color: '#60db8e',
           formatter: function (p) { return p.value > 0 ? p.value : ''; }
         }
       },
@@ -69,11 +60,11 @@ function initBarChart(canvas, width, height, dpr, dailyData, onBarClick) {
         itemStyle: {
           borderRadius: [6, 6, 0, 0],
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: '#FF6B6B' }, { offset: 1, color: '#EE0A24' }
+            { offset: 0, color: '#FFB0B0' }, { offset: 1, color: '#FF7E7E' }
           ])
         },
         label: {
-          show: true, position: 'top', fontSize: 9, color: '#EE0A24',
+          show: true, position: 'top', fontSize: 9, color: '#FF7E7E',
           formatter: function (p) { return p.value > 0 ? p.value : ''; }
         }
       }
@@ -112,7 +103,7 @@ function initPieChart(canvas, width, height, dpr, categories, totalExpense, onPi
       type: 'text', left: 'center', top: 'center',
       style: {
         text: '¥' + totalExpense.toFixed(0) + '\n总支出',
-        textAlign: 'center', fill: '#333', fontSize: 14,
+        textAlign: 'center', fill: '#E0E0F0', fontSize: 14,
         fontWeight: 'bold', lineHeight: 20
       }
     } : null,
@@ -121,8 +112,8 @@ function initPieChart(canvas, width, height, dpr, categories, totalExpense, onPi
       radius: ['48%', '72%'],
       center: ['50%', '52%'],
       avoidLabelOverlap: false,
-      itemStyle: { borderRadius: 4, borderColor: '#fff', borderWidth: 2 },
-      label: { formatter: '{b}\n{d}%', fontSize: 10, color: '#666', lineHeight: 14 },
+      itemStyle: { borderRadius: 4, borderColor: '#1A1A36', borderWidth: 2 },
+      label: { formatter: '{b}\n{d}%', fontSize: 10, color: '#9898C0', lineHeight: 14 },
       emphasis: {
         label: { fontSize: 14, fontWeight: 'bold' },
         itemStyle: { shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0,0,0,0.2)' }
@@ -152,31 +143,23 @@ function initYearBarChart(canvas, width, height, dpr, monthlyData, onBarClick) {
 
   chart.setOption({
     animationDuration: 800,
-    tooltip: {
-      trigger: 'axis', axisPointer: { type: 'shadow' },
-      formatter: function (params) {
-        return params.map(p => {
-          var color = p.seriesName === '收入' ? '#07C160' : '#EE0A24';
-          return '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + color + ';margin-right:6px;"></span>' + p.seriesName + ': ¥' + Number(p.value).toFixed(2);
-        }).join('<br/>');
-      }
-    },
+    tooltip: { show: false },
     legend: {
       data: ['收入', '支出'], bottom: 0,
-      textStyle: { fontSize: 12, color: '#666' },
+      textStyle: { fontSize: 12, color: '#9898C0' },
       itemWidth: 12, itemHeight: 8, itemGap: 24
     },
     grid: { top: 16, bottom: 40, left: 50, right: 16, containLabel: false },
     xAxis: {
       type: 'category', data: months,
-      axisLabel: { fontSize: 10, color: '#999' },
-      axisLine: { lineStyle: { color: '#eee' } },
+      axisLabel: { fontSize: 10, color: '#6868A0' },
+      axisLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } },
       axisTick: { show: false }
     },
     yAxis: {
       type: 'value',
       axisLabel: { fontSize: 10, color: '#999' },
-      splitLine: { lineStyle: { color: '#f5f5f5', type: 'dashed' } },
+      splitLine: { lineStyle: { color: 'rgba(255,255,255,0.04)', type: 'dashed' } },
       axisLine: { show: false }, axisTick: { show: false }
     },
     series: [
@@ -186,11 +169,11 @@ function initYearBarChart(canvas, width, height, dpr, monthlyData, onBarClick) {
         itemStyle: {
           borderRadius: [6, 6, 0, 0],
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: '#3EDB7A' }, { offset: 1, color: '#07C160' }
+            { offset: 0, color: '#86EFAC' }, { offset: 1, color: '#60db8e' }
           ])
         },
         label: {
-          show: true, position: 'top', fontSize: 9, color: '#07C160',
+          show: true, position: 'top', fontSize: 9, color: '#60db8e',
           formatter: function (p) { return p.value > 0 ? p.value : ''; }
         }
       },
@@ -200,11 +183,11 @@ function initYearBarChart(canvas, width, height, dpr, monthlyData, onBarClick) {
         itemStyle: {
           borderRadius: [6, 6, 0, 0],
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: '#FF6B6B' }, { offset: 1, color: '#EE0A24' }
+            { offset: 0, color: '#FFB0B0' }, { offset: 1, color: '#FF7E7E' }
           ])
         },
         label: {
-          show: true, position: 'top', fontSize: 9, color: '#EE0A24',
+          show: true, position: 'top', fontSize: 9, color: '#FF7E7E',
           formatter: function (p) { return p.value > 0 ? p.value : ''; }
         }
       }
@@ -243,7 +226,34 @@ Page({
     expandedDate: '',
     expandedDateRecords: [],
     expandedDateLoading: false,
-    expandedDateLabel: ''
+    expandedDateLabel: '',
+    categoryMap: {}
+  },
+
+  loadCategoryMap(callback) {
+    wx.cloud.callFunction({
+      name: 'getCategories',
+      success: (res) => {
+        if (res.result.success) {
+          const map = {};
+          const all = [...(res.result.data.expense || []), ...(res.result.data.income || [])];
+          all.forEach(c => { map[c.type + ':' + c.name] = c; });
+          this.setData({ categoryMap: map });
+        }
+        callback && callback();
+      },
+      fail: () => { callback && callback(); }
+    });
+  },
+
+  enrichRecord(r) {
+    const cat = this.data.categoryMap[r.type + ':' + r.category];
+    if (cat) {
+      r.categoryIcon = cat.icon;
+      r.categoryColor = cat.color;
+      r.categoryImageUrl = cat.imageUrl || '';
+    }
+    return r;
   },
 
   onLoad() {
@@ -255,6 +265,18 @@ Page({
       currentYear: now.getFullYear(),
       monthLabel: util.formatMonthLabel(currentMonth),
       yearLabel: now.getFullYear() + '年'
+    });
+    var self = this;
+    wx.cloud.callFunction({
+      name: 'getCategories',
+      success: function (res) {
+        if (res.result.success) {
+          var map = {};
+          var all = (res.result.data.expense || []).concat(res.result.data.income || []);
+          all.forEach(function (c) { map[c.type + ':' + c.name] = c; });
+          self.setData({ categoryMap: map });
+        }
+      }
     });
   },
 
@@ -343,7 +365,7 @@ Page({
               });
               self._renderPie(function (canvas, w, h, dpr) {
                 return initPieChart(canvas, w, h, dpr, categories, d.totalExpense, function (category) {
-                  wx.navigateTo({ url: '/pages/records/index?category=' + encodeURIComponent(category) + '&type=expense' });
+                  wx.navigateTo({ url: '/pages/records/index?category=' + encodeURIComponent(category) + '&type=expense&yearMonth=' + self.data.currentMonth });
                 });
               });
             });
@@ -390,7 +412,7 @@ Page({
               });
               self._renderPie(function (canvas, w, h, dpr) {
                 return initPieChart(canvas, w, h, dpr, categories, d.totalExpense, function (category) {
-                  wx.navigateTo({ url: '/pages/records/index?category=' + encodeURIComponent(category) + '&type=expense' });
+                  wx.navigateTo({ url: '/pages/records/index?category=' + encodeURIComponent(category) + '&type=expense&year=' + self.data.currentYear });
                 });
               });
             });
@@ -501,7 +523,16 @@ Page({
       data: { date: cell.date, pageSize: 50 },
       success: function (res) {
         if (res.result.success) {
-          self.setData({ expandedDateRecords: res.result.data, expandedDateLoading: false });
+          var mapReady = Object.keys(self.data.categoryMap).length > 0;
+          if (mapReady) {
+            var enriched = res.result.data.map(function (r) { return self.enrichRecord(r); });
+            self.setData({ expandedDateRecords: enriched, expandedDateLoading: false });
+          } else {
+            self.loadCategoryMap(function () {
+              var enriched = res.result.data.map(function (r) { return self.enrichRecord(r); });
+              self.setData({ expandedDateRecords: enriched, expandedDateLoading: false });
+            });
+          }
         } else {
           self.setData({ expandedDateLoading: false });
         }
@@ -510,6 +541,15 @@ Page({
         self.setData({ expandedDateLoading: false });
       }
     });
+  },
+
+  onTapExpandedRecord(e) {
+    var id = e.detail.record._id;
+    wx.navigateTo({ url: '/pages/add/index?id=' + id });
+  },
+
+  collapseExpanded() {
+    this.setData({ expandedDate: '', expandedDateRecords: [], expandedDateLabel: '' });
   },
 
   _renderBar(callback) {

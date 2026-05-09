@@ -1,5 +1,5 @@
 {
-  "description": "个人记账本微信小程序",
+  "description": "别等月底才问“花哪了”，每笔都记下来。",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -49,7 +49,7 @@
   "compileType": "miniprogram",
   "libVersion": "3.16.0",
   "appid": "wx60c541632d654f6b",
-  "projectname": "记账本",
+  "projectname": "花哪了",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",

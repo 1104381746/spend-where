@@ -2,5 +2,5 @@
   "usingComponents": {
     "record-item": "/components/record-item/record-item"
   },
-  "navigationBarTitleText": "筛选记录"
+  "navigationBarTitleText": "记录"
 }

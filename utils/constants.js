@@ -10,11 +10,11 @@ const EXPENSE_CATEGORIES = [
 ];
 
 const INCOME_CATEGORIES = [
-  { name: '工资', icon: 'icon-salary', color: '#07C160' },
+  { name: '工资', icon: 'icon-salary', color: '#60db8e' },
   { name: '奖金', icon: 'icon-bonus', color: '#FF6B6B' },
   { name: '投资理财', icon: 'icon-invest', color: '#A66CFF' },
   { name: '兼职', icon: 'icon-parttime', color: '#FFB347' },
-  { name: '红包', icon: 'icon-redpacket', color: '#FF4757' },
+  { name: '红包', icon: 'icon-redpacket', color: '#FF7E7E' },
   { name: '其他', icon: 'icon-other', color: '#90A4AE' }
 ];
 
@@ -24,9 +24,9 @@ const CATEGORY_MAP = {
 };
 
 const COLORS = {
-  primary: '#07C160',
-  income: '#07C160',
-  expense: '#EE0A24',
+  primary: '#60db8e',
+  income: '#60db8e',
+  expense: '#FF7E7E',
   bg: '#F5F5F5',
   card: '#FFFFFF',
   textPrimary: '#333333',
@@ -39,7 +39,7 @@ const PAGE_SIZE = 20;
 
 const CATEGORY_ICONS = ['🍔','🚗','🛒','🎮','🏠','🏥','📚','🎵','👕','💄','📱','✈️','🎬','⚽','🐱','🎁','☕','🍺','🔧','🎨'];
 
-const CATEGORY_COLORS = ['#FF6B6B','#4ECDC4','#FFB347','#A66CFF','#FF8A65','#4FC3F7','#FFD54F','#90A4AE','#07C160','#FF4757','#6C5CE7','#00B894'];
+const CATEGORY_COLORS = ['#FF6B6B','#4ECDC4','#FFB347','#A66CFF','#FF8A65','#4FC3F7','#FFD54F','#90A4AE','#60db8e','#FF7E7E','#6C5CE7','#00B894'];
 
 module.exports = {
   EXPENSE_CATEGORIES,

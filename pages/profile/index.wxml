@@ -6,12 +6,16 @@
 
   <view class="menu-section">
     <view class="menu-item" bindtap="goToCategories" data-type="expense">
-      <text class="menu-label">支出类别</text>
+      <text class="menu-label">类别管理</text>
       <text class="menu-arrow">›</text>
     </view>
-    <view class="menu-item" bindtap="goToCategories" data-type="income">
-      <text class="menu-label">收入类别</text>
+    <button class="menu-item share-btn" open-type="share">
+      <text class="menu-label">分享小程序</text>
       <text class="menu-arrow">›</text>
-    </view>
+    </button>
+  </view>
+
+  <view class="logout-section">
+    <view class="logout-btn" bindtap="onLogout">退出登录</view>
   </view>
 </view>

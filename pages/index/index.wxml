@@ -50,7 +50,7 @@
       <view class="empty-state" wx:if="{{groupedRecords.length === 0 && !loading}}">
         <view class="empty-icon">📝</view>
         <view class="empty-text">还没有记账记录</view>
-        <view class="empty-hint">点击右下角 + 开始记账</view>
+        <view class="empty-hint">点击下方记账开始记录</view>
       </view>
 
       <!-- 加载状态 -->
@@ -61,11 +61,6 @@
 
       <view class="no-more" wx:if="{{!hasMore && records.length > 0}}">— 没有更多了 —</view>
     </scroll-view>
-  </view>
-
-  <!-- 添加按钮 FAB -->
-  <view class="fab" bindtap="goToAdd">
-    <text class="fab-icon">+</text>
   </view>
 
   <!-- 删除确认弹窗 -->

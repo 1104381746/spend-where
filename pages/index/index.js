@@ -196,6 +196,5 @@ Page({
     this.setData({ showDeleteModal: false, deleteTarget: null });
   },
 
-  goToAdd() { wx.switchTab({ url: '/pages/add/index' }); },
   goToStats() { wx.switchTab({ url: '/pages/stats/index' }); }
 });

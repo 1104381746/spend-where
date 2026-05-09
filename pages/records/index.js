@@ -10,22 +10,32 @@ Page({
     filterDate: '',
     filterCategory: '',
     filterType: '',
+    filterYearMonth: '',
+    filterYear: 0,
     filterLabel: '',
     categoryMap: {}
   },
 
   onLoad(options) {
     const filterDate = options.date || '';
-    const filterCategory = options.category || '';
+    const filterYearMonth = options.yearMonth || '';
+    const filterYear = parseInt(options.year) || 0;
+    let filterCategory = options.category || '';
+    try { filterCategory = decodeURIComponent(filterCategory); } catch (e) {}
     const filterType = options.type || '';
     let filterLabel = '';
     if (filterDate) {
       filterLabel = util.formatDate(filterDate);
     } else if (filterCategory) {
       filterLabel = filterCategory + (filterType === 'income' ? ' · 收入' : ' · 支出');
+      if (filterYearMonth) {
+        filterLabel = util.formatMonthLabel(filterYearMonth) + ' · ' + filterLabel;
+      } else if (filterYear) {
+        filterLabel = filterYear + '年 · ' + filterLabel;
+      }
     }
     wx.setNavigationBarTitle({ title: filterLabel || '筛选记录' });
-    this.setData({ filterDate, filterCategory, filterType, filterLabel });
+    this.setData({ filterDate, filterYearMonth, filterYear, filterCategory, filterType, filterLabel });
     this.loadCategoryMap(() => {
       this.loadRecords(0, true);
     });
@@ -66,6 +76,8 @@ Page({
       page,
       pageSize: PAGE_SIZE,
       date: this.data.filterDate || undefined,
+      yearMonth: this.data.filterYearMonth || undefined,
+      year: this.data.filterYear || undefined,
       category: this.data.filterCategory || undefined,
       type: this.data.filterType || undefined
     };

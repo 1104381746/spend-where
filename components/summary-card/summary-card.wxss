@@ -2,9 +2,9 @@
   background: linear-gradient(135deg, #1A1A2E, #16213E);
   border-radius: 20rpx;
   padding: 36rpx 32rpx;
-  color: #FFFFFF;
+  color: #E0E0F0;
   margin: 20rpx 24rpx;
-  box-shadow: 0 8rpx 32rpx rgba(22, 33, 62, 0.35);
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.3);
 }
 
 .card-header {
@@ -53,13 +53,13 @@
 }
 
 .stat-item.income .stat-icon {
-  background: rgba(7, 193, 96, 0.25);
-  color: #07C160;
+  background: rgba(74, 222, 128, 0.25);
+  color: #60db8e;
 }
 
 .stat-item.expense .stat-icon {
-  background: rgba(238, 10, 36, 0.25);
-  color: #EE0A24;
+  background: rgba(255, 126, 126, 0.25);
+  color: #FF7E7E;
 }
 
 .stat-info {
@@ -79,11 +79,11 @@
 }
 
 .stat-item.income .stat-amount {
-  color: #07C160;
+  color: #60db8e;
 }
 
 .stat-item.expense .stat-amount {
-  color: #EE0A24;
+  color: #FF7E7E;
 }
 
 .stat-divider {

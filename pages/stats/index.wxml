@@ -92,19 +92,13 @@
     <view class="expanded-section" wx:if="{{expandedDate}}">
       <view class="expanded-header">
         <text class="expanded-title">{{expandedDateLabel}}</text>
-        <text class="expanded-close" bindtap="onTapCalendarCell" data-cell="{{null}}">收起</text>
+        <text class="expanded-close" bindtap="collapseExpanded">收起</text>
       </view>
       <view class="expanded-loading" wx:if="{{expandedDateLoading}}">
         <text>加载中...</text>
       </view>
       <view class="expanded-records" wx:elif="{{expandedDateRecords.length > 0}}">
-        <view wx:for="{{expandedDateRecords}}" wx:key="_id" class="expanded-record-item">
-          <text class="expando-cat">{{item.category}}</text>
-          <text class="expando-note" wx:if="{{item.note}}">{{item.note}}</text>
-          <text class="expando-amount {{item.type==='expense'?'ex-color':'in-color'}}">
-            {{item.type==='expense'?'-':'+'}}¥{{item.amount}}
-          </text>
-        </view>
+        <record-item wx:for="{{expandedDateRecords}}" wx:key="_id" record="{{item}}" bind:taprecord="onTapExpandedRecord" />
       </view>
       <view class="expanded-empty" wx:else>
         <text>暂无记录</text>

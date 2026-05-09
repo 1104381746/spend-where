@@ -6,14 +6,14 @@
   <view class="card-body">
     <view class="stat-item income">
       <view class="stat-info">
-        <text class="stat-label">收入</text>
+        <text class="stat-label">赚了</text>
         <text class="stat-amount">¥{{formattedIncome}}</text>
       </view>
     </view>
     <view class="stat-divider"></view>
     <view class="stat-item expense">
       <view class="stat-info">
-        <text class="stat-label">支出</text>
+        <text class="stat-label">花了</text>
         <text class="stat-amount">¥{{formattedExpense}}</text>
       </view>
     </view>

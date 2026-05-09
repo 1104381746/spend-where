@@ -12,6 +12,7 @@ Component({
     categoryImageUrl: '',
     note: '',
     type: '',
+    date: '',
     time: '',
     iconBgColor: '#f0f0f0'
   },
@@ -21,6 +22,8 @@ Component({
       if (!record) return;
       let timeStr = '';
       if (record.createdAt) timeStr = util.formatTime(record.createdAt);
+      let dateStr = '';
+      if (record.date) dateStr = util.formatShortDate(record.date);
 
       this.setData({
         formattedAmount: (record.amount || 0).toFixed(2),
@@ -29,6 +32,7 @@ Component({
         categoryImageUrl: record.categoryImageUrl || '',
         note: record.note || '',
         type: record.type || '',
+        date: dateStr,
         time: timeStr,
         iconBgColor: record.categoryColor ? (record.categoryColor + '20') : '#f0f0f0'
       });

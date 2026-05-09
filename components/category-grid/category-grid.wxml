@@ -1,6 +1,6 @@
 <view class="category-grid">
   <view
-    wx:for="{{categories}}"
+    wx:for="{{displayList}}"
     wx:key="name"
     class="category-item {{selected === item.name ? 'selected' : ''}}"
     bindtap="onSelect"
@@ -11,5 +11,10 @@
       <text>{{item.icon}}</text>
     </view>
     <text class="category-name">{{item.name}}</text>
+  </view>
+
+  <view wx:if="{{hasMore}}" class="expand-btn" bindtap="toggleExpand">
+    <text wx:if="{{!expanded}}">展开更多 ▼</text>
+    <text wx:else>收起 ▲</text>
   </view>
 </view>

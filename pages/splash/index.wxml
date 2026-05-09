@@ -1,0 +1,7 @@
+<view class="page">
+  <view class="container">
+    <image class="question-icon" src="/images/question.png"/>
+    <view class="title">花哪了</view>
+    <view class="subtitle">每一笔，都清楚</view>
+  </view>
+</view>

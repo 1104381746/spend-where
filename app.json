@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/splash/index",
     "pages/login/index",
     "pages/index/index",
     "pages/add/index",
@@ -12,12 +13,12 @@
     "backgroundColor": "#0D0D1D",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0D0D1D",
-    "navigationBarTitleText": "记账本",
+    "navigationBarTitleText": "花哪了",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#6868A0",
-    "selectedColor": "#07C160",
+    "selectedColor": "#60db8e",
     "backgroundColor": "#0A0A18",
     "borderStyle": "black",
     "list": [

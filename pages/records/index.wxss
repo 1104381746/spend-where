@@ -2,13 +2,13 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #F5F5F5;
+  background: var(--bg-color);
 }
 
 .filter-bar {
   padding: 20rpx 32rpx;
-  background: #FFFFFF;
-  border-bottom: 1rpx solid #F0F0F0;
+  background: var(--card-bg);
+  border-bottom: 1rpx solid var(--border-color);
   display: flex;
   align-items: center;
   gap: 16rpx;
@@ -17,13 +17,13 @@
 .filter-label {
   font-size: 28rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .filter-tag {
   font-size: 22rpx;
-  color: #07C160;
-  background: #07C16015;
+  color: var(--primary-color);
+  background: rgba(74, 222, 128, 0.12);
   padding: 4rpx 16rpx;
   border-radius: 20rpx;
 }
@@ -33,7 +33,7 @@
 }
 
 .record-list {
-  background: #FFFFFF;
+  background: var(--card-bg);
   margin: 16rpx 0;
 }
 
@@ -41,7 +41,7 @@
   text-align: center;
   padding: 24rpx;
   font-size: 24rpx;
-  color: #999;
+  color: var(--text-hint);
 }
 
 .empty-state {
@@ -59,5 +59,5 @@
 
 .empty-text {
   font-size: 28rpx;
-  color: #999;
+  color: var(--text-hint);
 }

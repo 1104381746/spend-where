@@ -47,6 +47,11 @@ function getDateArray(monthStr) {
   return arr;
 }
 
+function formatShortDate(date) {
+  const d = date instanceof Date ? date : new Date(date);
+  return `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
 function formatMonthLabel(monthStr) {
   const [year, month] = monthStr.split('-').map(Number);
   return `${year}年${month}月`;
@@ -63,6 +68,7 @@ function getMonthOffset(monthStr, offset) {
 module.exports = {
   formatDate,
   formatTime,
+  formatShortDate,
   formatAmount,
   getCurrentMonth,
   getMonthRange,

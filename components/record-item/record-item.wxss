@@ -2,12 +2,12 @@
   display: flex;
   align-items: center;
   padding: 24rpx 32rpx;
-  background: #fff;
-  border-bottom: 1rpx solid #F5F5F5;
+  background: var(--card-bg);
+  border-bottom: 1rpx solid var(--border-color);
 }
 
 .record-item:active {
-  background: #fafafa;
+  background: var(--card-hover);
 }
 
 .icon-wrap {
@@ -46,7 +46,7 @@
 .cat-name {
   font-size: 30rpx;
   font-weight: 500;
-  color: #222;
+  color: var(--text-primary);
 }
 
 .record-amount {
@@ -56,8 +56,8 @@
   margin-left: 16rpx;
 }
 
-.record-amount.expense { color: #EE0A24; }
-.record-amount.income  { color: #07C160; }
+.record-amount.expense { color: var(--expense-color); }
+.record-amount.income  { color: var(--income-color); }
 
 .row-bottom {
   display: flex;
@@ -67,7 +67,7 @@
 
 .record-note {
   font-size: 24rpx;
-  color: #999;
+  color: var(--text-hint);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -76,7 +76,7 @@
 
 .record-time {
   font-size: 24rpx;
-  color: #bbb;
+  color: rgba(255, 255, 255, 0.25);
   flex-shrink: 0;
   margin-left: 16rpx;
 }
