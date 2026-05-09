@@ -146,7 +146,7 @@ Expense-tracker/
 1. **克隆项目**
 
    ```bash
-   git clone <repo-url>
+   git clone [<repo-url>](https://github.com/1104381746/spend-where.git)
    ```
 
 2. **导入项目**
