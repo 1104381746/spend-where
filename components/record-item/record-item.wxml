@@ -9,8 +9,8 @@
       <text class="record-amount {{type==='expense'?'expense':'income'}}">{{type==='expense'?'-':'+'}}¥{{formattedAmount}}</text>
     </view>
     <view class="row-bottom">
-      <text class="record-note">{{note || time}}</text>
-      <text class="record-time" wx:if="{{note}}">{{time}}</text>
+      <text class="record-note">{{note}}</text>
+      <text class="record-time">{{time}}</text>
     </view>
   </view>
 </view>

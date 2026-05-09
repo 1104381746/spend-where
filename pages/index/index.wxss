@@ -6,6 +6,40 @@
   background: #F5F5F5;
 }
 
+/* 月份导航 */
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx 32rpx;
+  gap: 32rpx;
+}
+
+.nav-arrow {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #333;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.06);
+}
+
+.nav-arrow:active {
+  background: #F0F0F0;
+}
+
+.month-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #333;
+  min-width: 180rpx;
+  text-align: center;
+}
+
 .card-wrapper {
   flex-shrink: 0;
 }
@@ -20,11 +54,34 @@
 }
 
 .date-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20rpx 32rpx 10rpx;
+  background: #F5F5F5;
+}
+
+.date-label {
   font-size: 24rpx;
   font-weight: 600;
   color: #666;
-  background: #F5F5F5;
+}
+
+.date-summary {
+  display: flex;
+  gap: 16rpx;
+}
+
+.day-income {
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #07C160;
+}
+
+.day-expense {
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #EE0A24;
 }
 
 .date-group {

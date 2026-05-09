@@ -1,17 +1,21 @@
 <view class="summary-card">
   <view class="card-header">
-    <text class="month-label">{{monthLabel}}</text>
-    <text class="balance">结余 ¥{{balance}}</text>
+    <text class="balance-label">本月结余</text>
+    <text class="balance-amount">¥{{formattedBalance}}</text>
   </view>
   <view class="card-body">
-    <view class="stat-item">
-      <text class="stat-label">收入</text>
-      <text class="stat-amount income">↑ ¥{{totalIncome}}</text>
+    <view class="stat-item income">
+      <view class="stat-info">
+        <text class="stat-label">收入</text>
+        <text class="stat-amount">¥{{formattedIncome}}</text>
+      </view>
     </view>
     <view class="stat-divider"></view>
-    <view class="stat-item">
-      <text class="stat-label">支出</text>
-      <text class="stat-amount expense">↓ ¥{{totalExpense}}</text>
+    <view class="stat-item expense">
+      <view class="stat-info">
+        <text class="stat-label">支出</text>
+        <text class="stat-amount">¥{{formattedExpense}}</text>
+      </view>
     </view>
   </view>
 </view>

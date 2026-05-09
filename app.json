@@ -5,19 +5,20 @@
     "pages/add/index",
     "pages/stats/index",
     "pages/profile/index",
-    "pages/categories/index"
+    "pages/categories/index",
+    "pages/records/index"
   ],
   "window": {
-    "backgroundColor": "#F5F5F5",
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#0D0D1D",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0D0D1D",
     "navigationBarTitleText": "记账本",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#999999",
+    "color": "#6868A0",
     "selectedColor": "#07C160",
-    "backgroundColor": "#FFFFFF",
+    "backgroundColor": "#0A0A18",
     "borderStyle": "black",
     "list": [
       {

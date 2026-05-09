@@ -9,18 +9,22 @@ Page({
     totalExpense: 0,
     balance: 0,
     currentMonth: '',
+    monthLabel: '',
     page: 0,
     hasMore: true,
     loading: false,
     refreshing: false,
     showDeleteModal: false,
     deleteTarget: null,
-    categoryMap: {}  // name+type -> { icon, color, imageUrl }
+    categoryMap: {}
   },
 
   onLoad() {
     const currentMonth = util.getCurrentMonth();
-    this.setData({ currentMonth });
+    this.setData({
+      currentMonth,
+      monthLabel: util.formatMonthLabel(currentMonth)
+    });
     this.loadCategoryMap(() => {
       this.loadSummary();
       this.loadRecords(0, true);
@@ -110,13 +114,42 @@ Page({
         ? `${r.date.getFullYear()}-${String(r.date.getMonth() + 1).padStart(2, '0')}-${String(r.date.getDate()).padStart(2, '0')}`
         : r.date;
       if (dateKey !== currentDate) {
-        currentGroup = { date: dateKey, dateLabel: util.formatDate(dateKey), items: [] };
+        currentGroup = { date: dateKey, dateLabel: util.formatDate(dateKey), items: [], dayIncome: 0, dayExpense: 0 };
         groups.push(currentGroup);
         currentDate = dateKey;
       }
+      if (r.type === 'income') {
+        currentGroup.dayIncome += r.amount;
+      } else {
+        currentGroup.dayExpense += r.amount;
+      }
       currentGroup.items.push(r);
     });
+    groups.forEach(g => {
+      g.dayIncomeStr = g.dayIncome.toFixed(2);
+      g.dayExpenseStr = g.dayExpense.toFixed(2);
+    });
     return groups;
+  },
+
+  prevMonth() {
+    const newMonth = util.getMonthOffset(this.data.currentMonth, -1);
+    this.setData({
+      currentMonth: newMonth,
+      monthLabel: util.formatMonthLabel(newMonth)
+    });
+    this.loadSummary();
+    this.loadRecords(0, true);
+  },
+
+  nextMonth() {
+    const newMonth = util.getMonthOffset(this.data.currentMonth, 1);
+    this.setData({
+      currentMonth: newMonth,
+      monthLabel: util.formatMonthLabel(newMonth)
+    });
+    this.loadSummary();
+    this.loadRecords(0, true);
   },
 
   onRefresh() {

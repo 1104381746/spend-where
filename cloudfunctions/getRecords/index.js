@@ -10,11 +10,23 @@ exports.main = async (event, context) => {
 
   let query = { openid: OPENID };
 
-  if (yearMonth) {
+  if (event.date) {
+    const d = new Date(event.date);
+    const next = new Date(d);
+    next.setDate(next.getDate() + 1);
+    query.date = _.gte(d).lt(next);
+  } else if (yearMonth) {
     const [year, month] = yearMonth.split('-').map(Number);
     const start = new Date(year, month - 1, 1);
     const end = new Date(year, month, 0, 23, 59, 59, 999);
     query.date = _.gte(start).lte(end);
+  }
+
+  if (event.category) {
+    query.category = event.category;
+  }
+  if (event.type) {
+    query.type = event.type;
   }
 
   try {

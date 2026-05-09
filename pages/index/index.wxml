@@ -1,11 +1,17 @@
 <view class="page">
+  <!-- 月份导航 -->
+  <view class="month-nav">
+    <view class="nav-arrow" bindtap="prevMonth">‹</view>
+    <view class="month-title">{{monthLabel}}</view>
+    <view class="nav-arrow" bindtap="nextMonth">›</view>
+  </view>
+
   <!-- 月度汇总卡片 -->
   <view class="card-wrapper" bindtap="goToStats">
     <summary-card
       totalIncome="{{totalIncome}}"
       totalExpense="{{totalExpense}}"
       balance="{{balance}}"
-      monthLabel="{{currentMonth}}"
     />
   </view>
 
@@ -22,7 +28,13 @@
     >
       <!-- 有记录时 -->
       <block wx:for="{{groupedRecords}}" wx:key="date">
-        <view class="date-header">{{item.dateLabel}}</view>
+        <view class="date-header">
+          <text class="date-label">{{item.dateLabel}}</text>
+          <view class="date-summary">
+            <text class="day-income" wx:if="{{item.dayIncome > 0}}">收 ¥{{item.dayIncomeStr}}</text>
+            <text class="day-expense" wx:if="{{item.dayExpense > 0}}">支 ¥{{item.dayExpenseStr}}</text>
+          </view>
+        </view>
         <view class="date-group">
           <block wx:for="{{item.items}}" wx:key="_id">
             <record-item

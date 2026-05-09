@@ -41,6 +41,11 @@
   border-bottom: none;
 }
 
+.category{
+  width: 30rpx;
+  height: 30rpx;
+}
+
 .menu-label {
   font-size: 30rpx;
   color: #333;
