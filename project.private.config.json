@@ -1,6 +1,6 @@
 {
   "libVersion": "3.16.0",
-  "projectname": "%E8%AE%B0%E8%B4%A6",
+  "projectname": "Expense-tracker",
   "condition": {},
   "setting": {
     "urlCheck": true,

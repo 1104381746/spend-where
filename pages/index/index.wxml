@@ -23,13 +23,15 @@
       <!-- 有记录时 -->
       <block wx:for="{{groupedRecords}}" wx:key="date">
         <view class="date-header">{{item.dateLabel}}</view>
-        <block wx:for="{{item.items}}" wx:key="_id">
-          <record-item
-            record="{{item}}"
-            bind:taprecord="onTapRecord"
-            bind:deleterecord="onDeleteRecord"
-          />
-        </block>
+        <view class="date-group">
+          <block wx:for="{{item.items}}" wx:key="_id">
+            <record-item
+              record="{{item}}"
+              bind:taprecord="onTapRecord"
+              bind:deleterecord="onDeleteRecord"
+            />
+          </block>
+        </view>
       </block>
 
       <!-- 空状态 -->

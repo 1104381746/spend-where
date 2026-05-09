@@ -1,0 +1,62 @@
+<view class="page">
+  <view class="type-switcher">
+    <view class="type-btn {{currentType==='expense'?'active':''}}" data-type="expense" bindtap="switchType">支出</view>
+    <view class="type-btn {{currentType==='income'?'active':''}}" data-type="income" bindtap="switchType">收入</view>
+  </view>
+
+  <view class="list">
+    <view
+      wx:for="{{categories}}"
+      wx:key="_id"
+      class="category-row {{dragging && dragIndex===index ? 'dragging' : ''}}"
+      style="{{dragging && dragIndex===index ? 'transform:translateY('+dragOffsetY+'px)' : ''}}"
+    >
+      <view class="drag-handle" data-index="{{index}}" bindtouchstart="onDragStart" bindtouchmove="onDragMove" bindtouchend="onDragEnd">
+        <text class="drag-icon">☰</text>
+      </view>
+      <view class="cat-icon-wrap" style="background:{{item.color}}20">
+        <image wx:if="{{item.imageUrl}}" class="cat-img" src="{{item.imageUrl}}" mode="aspectFill"/>
+        <text wx:else class="cat-emoji">{{item.icon}}</text>
+      </view>
+      <text class="cat-name">{{item.name}}</text>
+      <view class="del-btn" wx:if="{{!item.isDefault}}" data-id="{{item._id}}" data-name="{{item.name}}" bindtap="deleteCategory">删除</view>
+    </view>
+  </view>
+
+  <view class="add-row" bindtap="showAdd">+ 新增{{currentType==='expense'?'支出':'收入'}}分类</view>
+</view>
+
+<!-- 新增弹窗 -->
+<view class="modal-overlay" wx:if="{{showAddModal}}" bindtap="hideAdd">
+  <view class="modal" catchtap>
+    <view class="modal-title">新增{{currentType==='expense'?'支出':'收入'}}分类</view>
+
+    <view class="form-item">
+      <text class="form-label">名称（最多5个汉字）</text>
+      <input class="form-input" placeholder="输入分类名称" value="{{addName}}" bindinput="onAddNameInput" maxlength="5"/>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label-row">
+        <text class="form-label">图标</text>
+        <view class="upload-btn" bindtap="uploadIcon">上传图片</view>
+      </view>
+      <view class="icon-grid">
+        <view
+          wx:for="{{icons}}" wx:key="*this" wx:for-item="ic"
+          class="icon-item {{addIcon===ic?'selected':''}}"
+          data-icon="{{ic}}" bindtap="selectIcon"
+        >{{ic}}</view>
+        <view class="icon-item upload-preview {{addIcon==='__image__'?'selected':''}}" bindtap="uploadIcon">
+          <text wx:if="{{addIcon!=='__image__'}}">📁</text>
+          <text wx:else>✓</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="modal-actions">
+      <view class="modal-btn cancel" bindtap="hideAdd">取消</view>
+      <view class="modal-btn confirm" bindtap="confirmAdd">确定</view>
+    </view>
+  </view>
+</view>

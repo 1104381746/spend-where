@@ -20,10 +20,19 @@
 }
 
 .date-header {
-  padding: 16rpx 28rpx 8rpx;
-  font-size: 22rpx;
-  color: #999999;
+  padding: 20rpx 32rpx 10rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #666;
   background: #F5F5F5;
+}
+
+.date-group {
+  background: #fff;
+  border-radius: 16rpx;
+  margin: 0 24rpx 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
 }
 
 .empty-state {

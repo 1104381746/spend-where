@@ -1,79 +1,82 @@
 .record-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 24rpx 28rpx;
-  background: #FFFFFF;
-  border-bottom: 1rpx solid #F0F0F0;
-  transition: background 0.2s;
+  padding: 24rpx 32rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #F5F5F5;
 }
 
 .record-item:active {
-  background: #F9F9F9;
+  background: #fafafa;
 }
 
-.record-left {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  min-width: 0;
-}
-
-.icon-wrapper {
-  width: 48rpx;
-  height: 48rpx;
-  border-radius: 50%;
+.icon-wrap {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24rpx;
-  margin-right: 20rpx;
   flex-shrink: 0;
+  margin-right: 24rpx;
+  overflow: hidden;
 }
 
-.record-info {
+.icon-emoji {
+  font-size: 38rpx;
+}
+
+.icon-img {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.record-body {
   flex: 1;
   min-width: 0;
 }
 
-.category-name {
-  font-size: 28rpx;
-  color: #333333;
-  font-weight: 500;
-}
-
-.record-note {
-  font-size: 22rpx;
-  color: #999999;
-  margin-top: 4rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.record-right {
+.row-top {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.cat-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #222;
+}
+
+.record-amount {
+  font-size: 32rpx;
+  font-weight: 700;
   flex-shrink: 0;
   margin-left: 16rpx;
 }
 
-.record-amount {
-  font-size: 30rpx;
-  font-weight: 600;
+.record-amount.expense { color: #EE0A24; }
+.record-amount.income  { color: #07C160; }
+
+.row-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.record-amount.expense {
-  color: #EE0A24;
-}
-
-.record-amount.income {
-  color: #07C160;
+.record-note {
+  font-size: 24rpx;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
 }
 
 .record-time {
-  font-size: 22rpx;
-  color: #999999;
-  margin-top: 4rpx;
+  font-size: 24rpx;
+  color: #bbb;
+  flex-shrink: 0;
+  margin-left: 16rpx;
 }

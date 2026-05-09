@@ -83,16 +83,9 @@ Page({
     monthLabel: '',
     yearLabel: '',
     loading: false,
-
-    // ECharts 配置
+    chartsReady: false,
     barEc: {},
     pieEc: {},
-
-    // 缓存数据，等待 canvas 就绪后渲染
-    cachedDailyData: [],
-    cachedMonthCategories: [],
-    cachedMonthlyData: [],
-    cachedYearCategories: []
   },
 
   onLoad() {
@@ -116,7 +109,7 @@ Page({
 
   switchMode(e) {
     const mode = e.currentTarget.dataset.mode;
-    this.setData({ mode });
+    this.setData({ mode, chartsReady: false });
     if (mode === 'month') {
       this.loadMonthData();
     } else {
@@ -128,10 +121,7 @@ Page({
     const dir = e.currentTarget.dataset.direction;
     const offset = dir === 'prev' ? -1 : 1;
     const newMonth = util.getMonthOffset(this.data.currentMonth, offset);
-    this.setData({
-      currentMonth: newMonth,
-      monthLabel: util.formatMonthLabel(newMonth)
-    });
+    this.setData({ currentMonth: newMonth, monthLabel: util.formatMonthLabel(newMonth), chartsReady: false });
     this.loadMonthData();
   },
 
@@ -139,7 +129,7 @@ Page({
     const dir = e.currentTarget.dataset.direction;
     const offset = dir === 'prev' ? -1 : 1;
     const newYear = this.data.currentYear + offset;
-    this.setData({ currentYear: newYear, yearLabel: `${newYear}年` });
+    this.setData({ currentYear: newYear, yearLabel: `${newYear}年`, chartsReady: false });
     this.loadYearData();
   },
 
@@ -153,6 +143,7 @@ Page({
           const d = res.result.data;
           const daily = d.daily || [];
           const categories = d.categories || [];
+          const hasData = d.totalIncome > 0 || d.totalExpense > 0;
           this.setData({
             totalIncome: d.totalIncome,
             totalExpense: d.totalExpense,
@@ -160,22 +151,13 @@ Page({
             totalIncomeStr: d.totalIncome.toFixed(2),
             totalExpenseStr: d.totalExpense.toFixed(2),
             balanceStr: d.balance.toFixed(2),
-            cachedDailyData: daily,
-            cachedMonthCategories: categories,
-            loading: false
+            loading: false,
+            chartsReady: hasData
           }, () => {
-            console.log('[stats] setData done, totalIncome:', this.data.totalIncome);
-            const barC = this.selectComponent('#barChart');
-            const pieC = this.selectComponent('#pieChart');
-            console.log('[stats] barChart component:', barC);
-            console.log('[stats] pieChart component:', pieC);
-            this._renderBar((canvas, w, h, dpr) => {
-              console.log('[stats] barChart init callback, canvas:', canvas, 'w:', w, 'h:', h);
-              return initBarChart(canvas, w, h, dpr, daily);
-            });
-            this._renderPie((canvas, w, h, dpr) => {
-              console.log('[stats] pieChart init callback, canvas:', canvas, 'w:', w, 'h:', h);
-              return initPieChart(canvas, w, h, dpr, categories);
+            if (!hasData) return;
+            wx.nextTick(() => {
+              this._renderBar((canvas, w, h, dpr) => initBarChart(canvas, w, h, dpr, daily));
+              this._renderPie((canvas, w, h, dpr) => initPieChart(canvas, w, h, dpr, categories));
             });
           });
         } else {
@@ -199,6 +181,7 @@ Page({
           const d = res.result.data;
           const monthly = d.monthly || [];
           const categories = d.categories || [];
+          const hasData2 = d.totalIncome > 0 || d.totalExpense > 0;
           this.setData({
             totalIncome: d.totalIncome,
             totalExpense: d.totalExpense,
@@ -206,12 +189,14 @@ Page({
             totalIncomeStr: d.totalIncome.toFixed(2),
             totalExpenseStr: d.totalExpense.toFixed(2),
             balanceStr: d.balance.toFixed(2),
-            cachedMonthlyData: monthly,
-            cachedYearCategories: categories,
-            loading: false
+            loading: false,
+            chartsReady: hasData2
           }, () => {
-            this._renderBar((canvas, w, h, dpr) => initYearBarChart(canvas, w, h, dpr, monthly));
-            this._renderPie((canvas, w, h, dpr) => initPieChart(canvas, w, h, dpr, categories));
+            if (!hasData2) return;
+            wx.nextTick(() => {
+              this._renderBar((canvas, w, h, dpr) => initYearBarChart(canvas, w, h, dpr, monthly));
+              this._renderPie((canvas, w, h, dpr) => initPieChart(canvas, w, h, dpr, categories));
+            });
           });
         } else {
           this.setData({ loading: false });
@@ -232,10 +217,5 @@ Page({
   _renderPie(callback) {
     const c = this.selectComponent('#pieChart');
     if (c) c.init(callback);
-  },
-
-  renderBarChart() {},
-  renderPieChart() {},
-  renderYearBarChart() {},
-  renderYearPieChart() {}
+  }
 });

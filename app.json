@@ -1,8 +1,11 @@
 {
   "pages": [
+    "pages/login/index",
     "pages/index/index",
     "pages/add/index",
-    "pages/stats/index"
+    "pages/stats/index",
+    "pages/profile/index",
+    "pages/categories/index"
   ],
   "window": {
     "backgroundColor": "#F5F5F5",
@@ -34,6 +37,12 @@
         "text": "统计",
         "iconPath": "images/stats.png",
         "selectedIconPath": "images/stats-active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "images/profile.png",
+        "selectedIconPath": "images/profile-active.png"
       }
     ]
   },

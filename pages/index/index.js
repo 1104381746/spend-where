@@ -14,22 +14,52 @@ Page({
     loading: false,
     refreshing: false,
     showDeleteModal: false,
-    deleteTarget: null
+    deleteTarget: null,
+    categoryMap: {}  // name+type -> { icon, color, imageUrl }
   },
 
   onLoad() {
     const currentMonth = util.getCurrentMonth();
     this.setData({ currentMonth });
-    this.loadSummary();
-    this.loadRecords(0, true);
+    this.loadCategoryMap(() => {
+      this.loadSummary();
+      this.loadRecords(0, true);
+    });
   },
 
   onShow() {
-    this.loadSummary();
-    this.loadRecords(0, true);
+    this.loadCategoryMap(() => {
+      this.loadSummary();
+      this.loadRecords(0, true);
+    });
   },
 
-  // 加载月度汇总
+  loadCategoryMap(callback) {
+    wx.cloud.callFunction({
+      name: 'getCategories',
+      success: (res) => {
+        if (res.result.success) {
+          const map = {};
+          const all = [...(res.result.data.expense || []), ...(res.result.data.income || [])];
+          all.forEach(c => { map[c.type + ':' + c.name] = c; });
+          this.setData({ categoryMap: map });
+        }
+        callback && callback();
+      },
+      fail: () => { callback && callback(); }
+    });
+  },
+
+  enrichRecord(r) {
+    const cat = this.data.categoryMap[r.type + ':' + r.category];
+    if (cat) {
+      r.categoryIcon = cat.icon;
+      r.categoryColor = cat.color;
+      r.categoryImageUrl = cat.imageUrl || '';
+    }
+    return r;
+  },
+
   loadSummary() {
     wx.cloud.callFunction({
       name: 'getMonthlyStats',
@@ -46,11 +76,9 @@ Page({
     });
   },
 
-  // 加载记录列表
   loadRecords(page = 0, refresh = false) {
     if (this.data.loading) return;
     if (!refresh && !this.data.hasMore) return;
-
     this.setData({ loading: true });
 
     wx.cloud.callFunction({
@@ -58,86 +86,64 @@ Page({
       data: { page, pageSize: PAGE_SIZE, yearMonth: this.data.currentMonth },
       success: (res) => {
         if (res.result.success) {
-          const newRecords = refresh ? res.result.data : this.data.records.concat(res.result.data);
+          const enriched = res.result.data.map(r => this.enrichRecord(r));
+          const newRecords = refresh ? enriched : this.data.records.concat(enriched);
           this.setData({
             records: newRecords,
-            page: page,
+            page,
             hasMore: res.result.hasMore,
             groupedRecords: this.groupRecords(newRecords)
           });
         }
       },
-      fail: (err) => {
-        wx.showToast({ title: '加载失败', icon: 'none' });
-      },
-      complete: () => {
-        this.setData({ loading: false, refreshing: false });
-      }
+      fail: () => { wx.showToast({ title: '加载失败', icon: 'none' }); },
+      complete: () => { this.setData({ loading: false, refreshing: false }); }
     });
   },
 
-  // 按日期分组
   groupRecords(records) {
     const groups = [];
     let currentDate = '';
     let currentGroup = null;
-
     records.forEach(r => {
       const dateKey = r.date instanceof Date
         ? `${r.date.getFullYear()}-${String(r.date.getMonth() + 1).padStart(2, '0')}-${String(r.date.getDate()).padStart(2, '0')}`
         : r.date;
-
       if (dateKey !== currentDate) {
-        currentGroup = {
-          date: dateKey,
-          dateLabel: util.formatDate(dateKey),
-          items: []
-        };
+        currentGroup = { date: dateKey, dateLabel: util.formatDate(dateKey), items: [] };
         groups.push(currentGroup);
         currentDate = dateKey;
       }
       currentGroup.items.push(r);
     });
-
     return groups;
   },
 
-  // 下拉刷新
   onRefresh() {
     this.setData({ refreshing: true });
-    this.loadSummary();
-    this.loadRecords(0, true);
+    this.loadCategoryMap(() => {
+      this.loadSummary();
+      this.loadRecords(0, true);
+    });
   },
 
-  // 上拉加载更多
   onLoadMore() {
     if (this.data.hasMore && !this.data.loading) {
       this.loadRecords(this.data.page + 1);
     }
   },
 
-  // 点击记录 -> 编辑
   onTapRecord(e) {
-    const record = e.detail.record;
-    wx.navigateTo({
-      url: `/pages/add/index?id=${record._id}`
-    });
+    wx.navigateTo({ url: `/pages/add/index?id=${e.detail.record._id}` });
   },
 
-  // 长按记录 -> 删除确认
   onDeleteRecord(e) {
-    const record = e.detail.record;
-    this.setData({
-      showDeleteModal: true,
-      deleteTarget: record
-    });
+    this.setData({ showDeleteModal: true, deleteTarget: e.detail.record });
   },
 
-  // 确认删除
   confirmDelete() {
     const record = this.data.deleteTarget;
     if (!record) return;
-
     wx.cloud.callFunction({
       name: 'deleteRecord',
       data: { _id: record._id },
@@ -148,27 +154,15 @@ Page({
           this.loadRecords(0, true);
         }
       },
-      fail: () => {
-        wx.showToast({ title: '删除失败', icon: 'none' });
-      },
-      complete: () => {
-        this.setData({ showDeleteModal: false, deleteTarget: null });
-      }
+      fail: () => { wx.showToast({ title: '删除失败', icon: 'none' }); },
+      complete: () => { this.setData({ showDeleteModal: false, deleteTarget: null }); }
     });
   },
 
-  // 取消删除
   cancelDelete() {
     this.setData({ showDeleteModal: false, deleteTarget: null });
   },
 
-  // 跳转到添加页
-  goToAdd() {
-    wx.switchTab({ url: '/pages/add/index' });
-  },
-
-  // 点击卡片跳转到统计
-  goToStats() {
-    wx.switchTab({ url: '/pages/stats/index' });
-  }
+  goToAdd() { wx.switchTab({ url: '/pages/add/index' }); },
+  goToStats() { wx.switchTab({ url: '/pages/stats/index' }); }
 });

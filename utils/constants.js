@@ -37,10 +37,16 @@ const COLORS = {
 
 const PAGE_SIZE = 20;
 
+const CATEGORY_ICONS = ['🍔','🚗','🛒','🎮','🏠','🏥','📚','🎵','👕','💄','📱','✈️','🎬','⚽','🐱','🎁','☕','🍺','🔧','🎨'];
+
+const CATEGORY_COLORS = ['#FF6B6B','#4ECDC4','#FFB347','#A66CFF','#FF8A65','#4FC3F7','#FFD54F','#90A4AE','#07C160','#FF4757','#6C5CE7','#00B894'];
+
 module.exports = {
   EXPENSE_CATEGORIES,
   INCOME_CATEGORIES,
   CATEGORY_MAP,
   COLORS,
-  PAGE_SIZE
+  PAGE_SIZE,
+  CATEGORY_ICONS,
+  CATEGORY_COLORS
 };

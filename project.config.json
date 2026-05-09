@@ -47,7 +47,7 @@
     "disableSWC": true
   },
   "compileType": "miniprogram",
-  "libVersion": "3.7.1",
+  "libVersion": "3.16.0",
   "appid": "wx60c541632d654f6b",
   "projectname": "记账本",
   "condition": {},

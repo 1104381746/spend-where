@@ -4,6 +4,13 @@ App({
       env: wx.cloud.DYNAMIC_CURRENT_ENV,
       traceUser: true
     });
+
+    const userInfo = wx.getStorageSync('userInfo');
+    if (userInfo) {
+      this.globalData.userInfo = userInfo;
+    }
   },
-  globalData: {}
+  globalData: {
+    userInfo: null
+  }
 });

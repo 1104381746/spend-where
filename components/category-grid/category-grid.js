@@ -1,7 +1,8 @@
 Component({
   properties: {
     type: { type: String, value: 'expense' },
-    selected: { type: String, value: '' }
+    selected: { type: String, value: '' },
+    list: { type: Array, value: null }
   },
 
   data: {
@@ -9,9 +10,13 @@ Component({
   },
 
   observers: {
-    'type': function (type) {
-      const { CATEGORY_MAP } = require('../../utils/constants');
-      this.setData({ categories: CATEGORY_MAP[type] || CATEGORY_MAP.expense });
+    'list, type': function (list, type) {
+      if (list && list.length > 0) {
+        this.setData({ categories: list });
+      } else {
+        const { CATEGORY_MAP } = require('../../utils/constants');
+        this.setData({ categories: CATEGORY_MAP[type] || CATEGORY_MAP.expense });
+      }
     }
   },
 

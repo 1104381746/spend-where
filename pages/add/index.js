@@ -1,11 +1,8 @@
-const { CATEGORY_MAP } = require('../../utils/constants');
-
 Page({
   data: {
     editMode: false,
     recordId: null,
 
-    // 表单数据
     amount: '',
     amountDisplay: '0.00',
     type: 'expense',
@@ -15,26 +12,39 @@ Page({
     dateDisplay: '',
     note: '',
 
-    // UI 状态
-    categories: CATEGORY_MAP.expense,
+    allCategories: { expense: [], income: [] },
+    categories: [],
     saving: false
   },
 
   onLoad(options) {
     const now = new Date();
     const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    this.setData({ date: todayStr, dateDisplay: todayStr });
 
-    this.setData({
-      date: todayStr,
-      dateDisplay: todayStr,
-      categories: CATEGORY_MAP.expense
+    this.loadCategories(() => {
+      if (options.id) {
+        this.setData({ editMode: true, recordId: options.id });
+        this.loadRecord(options.id);
+      }
     });
+  },
 
-    // 编辑模式：从首页传来记录 ID
-    if (options.id) {
-      this.setData({ editMode: true, recordId: options.id });
-      this.loadRecord(options.id);
-    }
+  loadCategories(callback) {
+    wx.cloud.callFunction({
+      name: 'getCategories',
+      success: (res) => {
+        if (res.result.success) {
+          const allCategories = res.result.data;
+          this.setData({
+            allCategories,
+            categories: allCategories[this.data.type] || []
+          });
+        }
+        callback && callback();
+      },
+      fail: () => { callback && callback(); }
+    });
   },
 
   // 加载现有记录（编辑模式）
@@ -55,7 +65,7 @@ Page({
         date: dateStr,
         dateDisplay: dateStr,
         note: record.note || '',
-        categories: CATEGORY_MAP[record.type] || CATEGORY_MAP.expense
+        categories: this.data.allCategories[record.type] || this.data.allCategories.expense || []
       });
       wx.hideLoading();
     }).catch(() => {
@@ -72,7 +82,7 @@ Page({
       type,
       category: '',
       categoryIcon: '',
-      categories: CATEGORY_MAP[type]
+      categories: this.data.allCategories[type] || []
     });
   },
 

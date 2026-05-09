@@ -1,17 +1,16 @@
 <view class="record-item" bindtap="onTap" bindlongpress="onLongPress">
-  <view class="record-left">
-    <view class="icon-wrapper" style="background-color: {{iconBgColor}};">
-      <text class="icon">{{categoryIcon}}</text>
-    </view>
-    <view class="record-info">
-      <text class="category-name">{{category}}</text>
-      <text class="record-note" wx:if="{{note}}">{{note}}</text>
-    </view>
+  <view class="icon-wrap" style="background:{{iconBgColor}}">
+    <image wx:if="{{categoryImageUrl}}" class="icon-img" src="{{categoryImageUrl}}" mode="aspectFill"/>
+    <text wx:else class="icon-emoji">{{categoryIcon}}</text>
   </view>
-  <view class="record-right">
-    <text class="record-amount {{type === 'expense' ? 'expense' : 'income'}}">
-      {{type === 'expense' ? '-' : '+'}}¥{{formattedAmount}}
-    </text>
-    <text class="record-time">{{time}}</text>
+  <view class="record-body">
+    <view class="row-top">
+      <text class="cat-name">{{category}}</text>
+      <text class="record-amount {{type==='expense'?'expense':'income'}}">{{type==='expense'?'-':'+'}}¥{{formattedAmount}}</text>
+    </view>
+    <view class="row-bottom">
+      <text class="record-note">{{note || time}}</text>
+      <text class="record-time" wx:if="{{note}}">{{time}}</text>
+    </view>
   </view>
 </view>

@@ -1,0 +1,17 @@
+Page({
+  data: { userInfo: null },
+
+  onShow() {
+    const userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.reLaunch({ url: '/pages/login/index' });
+      return;
+    }
+    this.setData({ userInfo });
+  },
+
+  goToCategories(e) {
+    const type = e.currentTarget.dataset.type;
+    wx.navigateTo({ url: `/pages/categories/index?type=${type}` });
+  }
+});
