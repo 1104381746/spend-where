@@ -42,9 +42,7 @@ exports.main = async (event) => {
         batch.push({ ...c, type: 'income', openid: OPENID, isDefault: true, hidden: false, order: i, createdAt: db.serverDate() });
       });
 
-      for (const item of batch) {
-        await db.collection('categories').add({ data: item });
-      }
+      await Promise.all(batch.map(item => db.collection('categories').add({ data: item })));
 
       const result = await db.collection('categories')
         .where({ openid: OPENID })

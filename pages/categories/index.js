@@ -1,7 +1,5 @@
 const { CATEGORY_ICONS } = require('../../utils/constants');
 
-const ITEM_HEIGHT = 100; // rpx to px ratio handled via touch
-
 Page({
   data: {
     currentType: 'expense',
@@ -80,8 +78,10 @@ Page({
       const item = cats.splice(from, 1)[0];
       cats.splice(to, 0, item);
       this.setData({ categories: cats, dragIndex: to, dragStartY: touch.clientY });
+      this.setData({ dragOffsetY: 0 });
+    } else {
+      this.setData({ dragOffsetY: offsetY - steps * h });
     }
-    this.setData({ dragOffsetY: offsetY - steps * h });
   },
 
   onDragEnd() {

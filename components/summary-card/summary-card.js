@@ -14,13 +14,13 @@ Component({
 
   observers: {
     'totalIncome': function (v) {
-      this.setData({ formattedIncome: v.toFixed(2) });
+      this.setData({ formattedIncome: (v || 0).toFixed(2) });
     },
     'totalExpense': function (v) {
-      this.setData({ formattedExpense: v.toFixed(2) });
+      this.setData({ formattedExpense: (v || 0).toFixed(2) });
     },
     'balance': function (v) {
-      this.setData({ formattedBalance: v.toFixed(2) });
+      this.setData({ formattedBalance: (v || 0).toFixed(2) });
     }
   }
 });

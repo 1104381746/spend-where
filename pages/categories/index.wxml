@@ -33,7 +33,7 @@
 
     <view class="form-item">
       <text class="form-label">名称（最多5个汉字）</text>
-      <input class="form-input" placeholder="输入分类名称" value="{{addName}}" bindinput="onAddNameInput" maxlength="5"/>
+      <input class="form-input" placeholder="输入分类名称" value="{{addName}}" bindinput="onAddNameInput" maxlength="5" adjust-position="{{false}}"/>
     </view>
 
     <view class="form-item">

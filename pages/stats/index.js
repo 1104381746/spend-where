@@ -2,8 +2,6 @@ const util = require('../../utils/util');
 const echarts = require('../../components/ec-canvas/echarts');
 const { CATEGORY_COLORS } = require('../../utils/constants');
 
-var PageContext = null;
-
 function initBarChart(canvas, width, height, dpr, dailyData, onBarClick) {
   const chart = echarts.init(canvas, null, { width, height, devicePixelRatio: dpr });
   canvas.setChart(chart);
@@ -257,7 +255,6 @@ Page({
   },
 
   onLoad() {
-    PageContext = this;
     var now = new Date();
     var currentMonth = util.getCurrentMonth();
     this.setData({

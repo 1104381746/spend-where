@@ -19,6 +19,7 @@ exports.main = async (event, context) => {
   try {
     const res = await db.collection('records')
       .where({ openid: OPENID, date: _.gte(start).lte(end) })
+      .limit(1000)
       .get();
 
     const records = res.data;

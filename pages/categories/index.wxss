@@ -101,8 +101,9 @@
   top: 0; left: 0; right: 0; bottom: 0;
   background: var(--overlay-bg);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 15vh;
   z-index: 1000;
 }
 
@@ -152,7 +153,8 @@
 .form-input {
   border: 1rpx solid var(--border-color);
   border-radius: var(--radius-sm);
-  padding: 16rpx;
+  padding: 24rpx;
+  height: 80rpx;
   font-size: 28rpx;
   color: var(--text-primary);
   width: 100%;

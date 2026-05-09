@@ -14,8 +14,4 @@
       <text class="menu-arrow">›</text>
     </button>
   </view>
-
-  <view class="logout-section">
-    <view class="logout-btn" bindtap="onLogout">退出登录</view>
-  </view>
 </view>

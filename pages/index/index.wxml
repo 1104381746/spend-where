@@ -27,16 +27,16 @@
       lower-threshold="100"
     >
       <!-- 有记录时 -->
-      <block wx:for="{{groupedRecords}}" wx:key="date">
+      <block wx:for="{{groupedRecords}}" wx:key="date" wx:for-item="group" wx:for-index="gi">
         <view class="date-header">
-          <text class="date-label">{{item.dateLabel}}</text>
+          <text class="date-label">{{group.dateLabel}}</text>
           <view class="date-summary">
-            <text class="day-income" wx:if="{{item.dayIncome > 0}}">收 ¥{{item.dayIncomeStr}}</text>
-            <text class="day-expense" wx:if="{{item.dayExpense > 0}}">支 ¥{{item.dayExpenseStr}}</text>
+            <text class="day-income" wx:if="{{group.dayIncome > 0}}">收 ¥{{group.dayIncomeStr}}</text>
+            <text class="day-expense" wx:if="{{group.dayExpense > 0}}">支 ¥{{group.dayExpenseStr}}</text>
           </view>
         </view>
         <view class="date-group">
-          <block wx:for="{{item.items}}" wx:key="_id">
+          <block wx:for="{{group.items}}" wx:key="_id">
             <record-item
               record="{{item}}"
               bind:taprecord="onTapRecord"
